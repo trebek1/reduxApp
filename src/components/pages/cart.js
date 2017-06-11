@@ -2,7 +2,7 @@
 
 import React from "react"; 
 import {connect} from "react-redux"; 
-import {Panel, Col, Row, Well, Button, ButtonGroup, Label} from "react-bootstrap";
+import {Modal, Panel, Col, Row, Well, Button, ButtonGroup, Label} from "react-bootstrap";
 import {bindActionCreators} from "redux";
 import {deleteCartItem, updateCartItem} from "../../actions/cartActions";   
 
@@ -29,7 +29,21 @@ class Cart extends React.Component{
 		}else{
 			this.onDelete(_id); 
 		}
-		
+	}
+
+	constructor(){
+			super(); 
+			this.state = {
+				showModal: false
+			}	
+	}
+
+	open(){
+		this.setState({showModal : true});
+	}
+
+	close(){
+		this.setState({showModal : false});	
 	}
 
 	renderCart(){
@@ -40,7 +54,6 @@ class Cart extends React.Component{
 					<Row>
 						<Col xs={12} sm={4}>
 							<h6> {cartArr.title}</h6><span>    </span>
-
 						</Col>
 						<Col xs={12} sm={2}>
 							<h6>usd. {cartArr.price}</h6>
@@ -55,6 +68,17 @@ class Cart extends React.Component{
 							<Button onClick={this.onDelete.bind(this, cartArr._id)} bsStyle="danger" bsSize="small">Delete</Button>
 						</ButtonGroup>
 					</Row>
+					<Modal show={this.state.showModal} onHide={this.close.bind(this)}>
+			          <Modal.Header closeButton>
+			            <Modal.Title>Modal heading</Modal.Title>
+			          </Modal.Header>
+			          <Modal.Body>
+			            <h6> Test </h6>
+			          </Modal.Body>
+			          <Modal.Footer>
+			            <Button onClick={this.close.bind(this)}>Close</Button>
+			          </Modal.Footer>
+			        </Modal>
 				</Panel>
 			)
 		});
@@ -62,7 +86,15 @@ class Cart extends React.Component{
 		return(
 			<Panel header="Cart" bsStyle="primary">
 				{cartItemsList}
-			</Panel>
+				<Row>
+					<Col xs={12}>
+						<h6> Total amount: </h6>
+						<Button onClick={this.open.bind(this)} bsStyle="success" bsSize="small">
+							Proceed to checkout
+						</Button>
+					</Col>
+				</Row>
+			</Panel>	
 		)
 	}
 
