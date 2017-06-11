@@ -2,12 +2,15 @@
 
 export function booksReducers(state = {books: []}, action){
 	switch(action.type){
+		
 		case "INCREMENT": 
 		return state + action.payload; 
 		break;
+
 		case "DECREMENT": 
 		return state - action.payload; 
-		break; 
+		break;
+
 		case "POST_BOOK":
 		// let books = state.books.concat(action.payload); 
 		// return {books}; 
@@ -29,9 +32,7 @@ export function booksReducers(state = {books: []}, action){
 
 		case "UPDATE_BOOK": 
 		const currentBookToUpdate = [...state.books]; 
-
 		const indexToUpdate = currentBookToUpdate.findIndex((book) => book.id === action.payload.id); 
-
 		const newBookToUpdate = {
 			...currentBookToUpdate[indexToUpdate], 
 			title: action.payload.title,
