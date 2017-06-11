@@ -14,3 +14,11 @@ export function deleteCartItem(cart){
 	}
 }
 
+export function updateCartItem(_id, unit){
+	return {
+		type: "UPDATE_CART_ITEM", 
+		_id: _id, 
+		unit: unit
+	}
+}
+

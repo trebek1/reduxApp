@@ -34,7 +34,7 @@ class Cart extends React.Component{
 							<h6>usd. {cartArr.price}</h6>
 						</Col>
 						<Col xs={12} sm={2}>
-							<h6>qty. <Label bsStyle="success"></Label></h6>
+							<h6>qty. <Label bsStyle="success">{cartArr.quantity}</Label></h6>
 						</Col>
 						<ButtonGroup style={{minWidth: "30px"}}>
 							<Button bsStyle="default" bsSize="small">-</Button>
@@ -45,7 +45,7 @@ class Cart extends React.Component{
 					</Row>
 				</Panel>
 			)
-		},this);
+		});
 
 		return(
 			<Panel header="Cart" bsStyle="primary">

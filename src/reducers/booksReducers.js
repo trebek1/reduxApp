@@ -55,7 +55,8 @@ export function booksReducers(state = {
 			description: action.payload.description	
 		}
 		const updateBooks = [...currentBookToUpdate.slice(0,indexToUpdate), newBookToUpdate, ...currentBookToUpdate.slice(indexToUpdate + 1)];
-		Object.assign({}, state, {books: updateBooks});
+		return Object.assign({}, state, {books: updateBooks});
+		break;
 	}
 	
 	return state; 
