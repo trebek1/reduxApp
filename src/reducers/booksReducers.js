@@ -19,6 +19,7 @@ export function booksReducers(state = {
 
 		case "GET_BOOKS": 
 		return {...state, books:[...state.books]}
+		break; 
 		
 		case "INCREMENT": 
 		return state + action.payload; 
@@ -29,12 +30,10 @@ export function booksReducers(state = {
 		break;
 
 		case "POST_BOOK":
-		// let books = state.books.concat(action.payload); 
-		// return {books}; 
+		// let books = state.books.concat(action.payload); 		// return {books}; 
 
 		let books = [...state.books, ...action.payload]
-		state.books = books; 
-		return state; 
+		return Object.assign({}, state, {books});
 		break; 
 
 		case "DELETE_BOOK":
@@ -43,8 +42,8 @@ export function booksReducers(state = {
 		// determine wich index in array is book to be delete 
 		const indexToDelete = currentBookToDelete.findIndex((book) => book.id === action.payload.id); 
 		let books2 = [...currentBookToDelete.slice(0,indexToDelete), ...currentBookToDelete.slice(indexToDelete + 1)];
-		state.books = books2; 
-		return state; 
+		
+		return Object.assign({}, state, {books: books2});
 		break;
 
 		case "UPDATE_BOOK": 
@@ -56,7 +55,15 @@ export function booksReducers(state = {
 			description: action.payload.description	
 		}
 		const updateBooks = [...currentBookToUpdate.slice(0,indexToUpdate), newBookToUpdate, ...currentBookToUpdate.slice(indexToUpdate + 1)];
-		state.books = updateBooks;  
+		Object.assign({}, state, {books: updateBooks});
 	}
-	return state; 	
+	
+	return state; 
 }
+
+
+
+
+
+
+
