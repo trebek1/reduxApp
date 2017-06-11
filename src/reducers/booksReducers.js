@@ -3,13 +3,13 @@
 export function booksReducers(state = {
 	books: 
 		[{
-			id: 1, 
+			_id: 1, 
 			title: "this is the book title", 
 			description: "this is the book description",
 			price: 1337
 		},
 		{
-			id: 2, 
+			_id: 2, 
 			title: "this is the book title 2 ", 
 			description: "this is the book description 2",
 			price: 1447
@@ -40,7 +40,7 @@ export function booksReducers(state = {
 		// create a copy of the current array 
 		const currentBookToDelete = [...state.books]; 
 		// determine wich index in array is book to be delete 
-		const indexToDelete = currentBookToDelete.findIndex((book) => book.id === action.payload.id); 
+		const indexToDelete = currentBookToDelete.findIndex((book) => book._id === action.payload._id); 
 		let books2 = [...currentBookToDelete.slice(0,indexToDelete), ...currentBookToDelete.slice(indexToDelete + 1)];
 		
 		return Object.assign({}, state, {books: books2});
@@ -48,7 +48,7 @@ export function booksReducers(state = {
 
 		case "UPDATE_BOOK": 
 		const currentBookToUpdate = [...state.books]; 
-		const indexToUpdate = currentBookToUpdate.findIndex((book) => book.id === action.payload.id); 
+		const indexToUpdate = currentBookToUpdate.findIndex((book) => book._id === action.payload._id);
 		const newBookToUpdate = {
 			...currentBookToUpdate[indexToUpdate], 
 			title: action.payload.title,
