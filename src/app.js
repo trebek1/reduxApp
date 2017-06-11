@@ -27,7 +27,6 @@ import BooksList from "./components/pages/BooksList";
 
 //store.dispatch(postBooks());
 
-
 store.dispatch(postBooks([{
 		id: 3, 
 		title: "title 3", 
@@ -51,15 +50,4 @@ render(
 		<BooksList /> 
 	</Provider>, document.getElementById("app")
 );	
-
-
-
-
-
-
-
-
-
-
-
 
