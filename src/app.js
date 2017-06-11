@@ -17,7 +17,7 @@ const reducer = function(state = {books: []}, action){
 		// let books = state.books.concat(action.payload); 
 		// return {books}; 
 
-		let books = [...state.books,...action.payload]
+		let books = [...state.books, ...action.payload]
 		state.books = books; 
 		return state; 
 		break; 
@@ -30,7 +30,20 @@ const reducer = function(state = {books: []}, action){
 		let books2 = [...currentBookToDelete.slice(0,indexToDelete), ...currentBookToDelete.slice(indexToDelete + 1)];
 		state.books = books2; 
 		return state; 
-		break; 
+		break;
+
+		case "UPDATE_BOOK": 
+		const currentBookToUpdate = [...state.books]; 
+
+		const indexToUpdate = currentBookToUpdate.findIndex((book) => book.id === action.payload.id); 
+
+		const newBookToUpdate = {
+			...currentBookToUpdate[indexToUpdate], 
+			title: action.payload.title,
+			description: action.payload.description	
+		}
+		const updateBooks = [...currentBookToUpdate.slice(0,indexToUpdate), newBookToUpdate, ...currentBookToUpdate.slice(indexToUpdate + 1)];
+		state.books = updateBooks;  
 	}
 	return state; 	
 }
@@ -41,7 +54,7 @@ const store = createStore(reducer);
 
 store.subscribe(() => {
 	console.log("current state is ", store.getState());
-	}); 
+}); 
 	
 // step 2 create and dispatch actions 
 
@@ -85,6 +98,15 @@ store.dispatch({
 store.dispatch({
 	type: "DELETE_BOOK", 
 	payload: {id: 1}
+});
+
+store.dispatch({
+	type: "UPDATE_BOOK", 
+	payload: {
+		id: 2, 
+		title: "learn redux", 
+		description: "desc"
+	}
 })
 
 
