@@ -25,17 +25,7 @@ import BooksList from "./components/pages/BooksList";
 	
 // step 2 create and dispatch actions 
 
-store.dispatch(postBooks([{
-		id: 1, 
-		title: "this is the book title", 
-		description: "this is the book description",
-		price: 1337
-	},{
-		id: 2, 
-		title: "this is the book title 2 ", 
-		description: "this is the book description 2",
-		price: 1447
-	}]));
+//store.dispatch(postBooks());
 
 
 store.dispatch(postBooks([{
