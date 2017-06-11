@@ -5,7 +5,7 @@ import {createStore} from "redux";
 
 // step 3 define reducers 
 
-const reducer = function(state = [], action){
+const reducer = function(state = {books: []}, action){
 	switch(action.type){
 		case "INCREMENT": 
 		return state + action.payload; 
@@ -14,7 +14,11 @@ const reducer = function(state = [], action){
 		return state - action.payload; 
 		break; 
 		case "POST_BOOK":
-		return state = action.payload; 
+		// let books = state.books.concat(action.payload); 
+		// return {books}; 
+
+		return {books: [...state.books,...action.payload]}
+
 		break; 
 	}
 	return state; 
@@ -54,4 +58,29 @@ store.dispatch({
 		price: 1447
 	}]
 });
+
+// crud operations in redux 
+
+store.dispatch({
+	type: "POST_BOOK", 
+	payload: [{
+		id: 3, 
+		title: "title 3", 
+		description: "desc 3", 
+		price: 777
+	}]
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
