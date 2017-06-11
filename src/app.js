@@ -63,6 +63,13 @@ store.dispatch({
 		title: "learn redux", 
 		description: "desc"
 	}
+});
+
+store.dispatch({
+	type: "ADD_TO_CART", 
+	payload: [{
+		id: 1
+	}]
 })
 
 
