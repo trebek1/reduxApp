@@ -3,8 +3,6 @@
 import React from "react"; 
 import {connect} from "react-redux"; 
 import {Panel, Col, Row, Well, Button} from "react-bootstrap"; 
-import {connect} from "react-redux"; 
-
 
 class Cart extends React.Component{
 
@@ -15,13 +13,14 @@ class Cart extends React.Component{
 	renderCart(){
 		
 		const cartItemsList = this.props.cart.map((cartArr) => {
+			debugger;
 			return(
 				<Panel key={cartArr.id}>
-				<Row>
-					<Col xs={12} sm={4}>
-						<h6> {cartArr.title}</h6>	
-					</Col>
-				</Row>
+					<Row>
+						<Col xs={12} sm={4}>
+							<h6> {cartArr.title}</h6>	
+						</Col>
+					</Row>
 				</Panel>
 			)
 		});
@@ -45,10 +44,8 @@ class Cart extends React.Component{
 
 function mapStateToProps(state){
 	return {
-		cart : state.cart.cart
+		cart: state.cart.cart
 	}
 }
-
-
 
 export default connect(mapStateToProps)(Cart); 
