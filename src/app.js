@@ -16,7 +16,7 @@ const middleware = applyMiddleware(logger);
 const store = createStore(reducers, middleware);
 
 
-import BooksList from "./components/pages/BooksList"; 
+import BooksList from "./components/pages/BooksList.jsx"; 
 
 // store.subscribe(() => {
 // 	console.log("current state is ", store.getState());

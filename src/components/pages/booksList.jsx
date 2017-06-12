@@ -5,16 +5,12 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
 import {getBooks} from "../../actions/booksActions"; 
 import {Grid, Col, Row, Button} from "react-bootstrap"; 
-import BookItem from "./bookItem";	
-import BooksForm from "./booksForm";
+import BookItem from "./bookItem.jsx";	
+import BooksForm from "./booksForm.jsx";
 
 import Cart from "./cart"; 		
 
 class BooksList extends React.Component{
-
-	componentDidMount(){
-			
-	}
 
 	render(){		
 		const bookList = this.props.books.map((booksArr) => {
