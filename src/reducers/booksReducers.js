@@ -40,7 +40,7 @@ export function booksReducers(state = {
 		// create a copy of the current array 
 		const currentBookToDelete = [...state.books]; 
 		// determine wich index in array is book to be delete 
-		const indexToDelete = currentBookToDelete.findIndex((book) => book._id === action.payload._id); 
+		const indexToDelete = currentBookToDelete.findIndex((book) => book._id == action.payload); 
 		let books2 = [...currentBookToDelete.slice(0,indexToDelete), ...currentBookToDelete.slice(indexToDelete + 1)];
 		
 		return Object.assign({}, state, {books: books2});

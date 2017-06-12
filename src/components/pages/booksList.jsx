@@ -8,7 +8,7 @@ import {Grid, Col, Row, Button} from "react-bootstrap";
 import BookItem from "./bookItem.jsx";	
 import BooksForm from "./booksForm.jsx";
 
-import Cart from "./cart"; 		
+import Cart from "./cart.jsx"; 		
 
 class BooksList extends React.Component{
 

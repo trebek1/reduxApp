@@ -10,6 +10,9 @@ import React from "react";
 import {render} from "react-dom"; 
 import {Provider} from "react-redux"; 
 
+//React Router 
+import {Router, Route, IndexRoute, browserHistory} from "react-router"; 
+
 
 // step 1 create the store 
 const middleware = applyMiddleware(logger); 
@@ -17,6 +20,29 @@ const store = createStore(reducers, middleware);
 
 
 import BooksList from "./components/pages/BooksList.jsx"; 
+import Menu from "./components/menu.jsx";
+import Footer from "./components/footer.jsx";
+import Cart from "./components/pages/cart.jsx";	
+import BooksForm from "./components/pages/booksForm.jsx";	
+import Main from "./main.jsx";
+
+
+const Routes = (
+	<Provider store={store}>
+		<Router history={browserHistory}>
+			<Route path="/" component={Main}>
+				<IndexRoute component={BooksList}/>
+				<Route path="/admin" component={BooksForm}/> 
+				<Route path="/cart" component={Cart}/>
+			</Route>
+		</Router>
+	</Provider>
+)
+
+render(
+	Routes, document.getElementById("app")
+);	
+
 
 // store.subscribe(() => {
 // 	console.log("current state is ", store.getState());
@@ -44,9 +70,5 @@ import BooksList from "./components/pages/BooksList.jsx";
 
 //store.dispatch(addToCart([{id:1}]));
 
-render(
-	<Provider store = {store}>
-		<BooksList /> 
-	</Provider>, document.getElementById("app")
-);	
+
 
