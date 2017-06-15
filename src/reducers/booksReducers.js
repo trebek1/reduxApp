@@ -1,26 +1,12 @@
 // step 3 define reducers 
 
 export function booksReducers(state = {
-	books: 
-		[{
-			_id: 1, 
-			title: "this is the book title", 
-			description: "this is the book description",
-			price: 1337
-		},
-		{
-			_id: 2, 
-			title: "this is the book title 2 ", 
-			description: "this is the book description 2",
-			price: 1447
-			}]
-	}, action){
+	books: []
+}, action){
 	switch(action.type){
-
 		case "GET_BOOKS": 
-		return {...state, books:[...state.books]}
+		return {...state, books:[...action.payload]	}
 		break; 
-		
 		case "INCREMENT": 
 		return state + action.payload; 
 		break;

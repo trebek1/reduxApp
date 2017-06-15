@@ -12,6 +12,10 @@ import Cart from "./cart.jsx";
 
 class BooksList extends React.Component{
 
+	componentDidMount(){
+		this.props.	getBooks();
+	}
+
 	render(){		
 		const bookList = this.props.books.map((booksArr) => {
 			return(
