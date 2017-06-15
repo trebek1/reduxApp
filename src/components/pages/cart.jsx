@@ -21,11 +21,11 @@ class Cart extends React.Component{
 	}
 
 	onIncrement(_id){
-			this.props.updateCartItem(_id, 1);
+			this.props.updateCartItem(_id, 1, this.props.cart);
 	}
 	onDecrement(_id, quantity){
 		if(quantity > 1){
-			this.props.updateCartItem(_id, -1);
+			this.props.updateCartItem(_id, -1, this.props.cart);
 		}else{
 			this.onDelete(_id); 
 		}
