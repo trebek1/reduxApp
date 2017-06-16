@@ -1,21 +1,46 @@
 "use strict"
 import React from "react"
-import {Well, Panel, FormControl, FormGroup, ControlLabel, Button} from "react-bootstrap"; 
-
+import {MenuItem, InputGroup, DropdownButton, Image, Col, Row, Well, Panel, FormControl, FormGroup, ControlLabel, Button} from "react-bootstrap"; 
 import {connect} from "react-redux"; 
 import {bindActionCreators} from "redux"; 
 import {findDOMNode} from "react-dom"; 
-import {postBooks, deleteBooks} from "../../actions/booksActions"; 
+import {postBooks, deleteBooks, getBooks} from "../../actions/booksActions"; 
+import axios from "axios"; 
 
 class BooksForm extends React.Component{
+
+	constructor(){
+		super(); 
+		this.state = {
+			images: [{}], 
+			img: ""
+		}
+	}
+
+	componentDidMount(){
+		this.props.getBooks();
+
+		axios.get("/api/images")
+		.then(function(response){
+			this.setState({images: response.data})}.bind(this))
+		.catch(function(err){
+			this.setState({images: "error loading images from server ", img: ""})}.bind(this))
+	}
 
 	handleSubmit(){
 		const book = [{
 			title: findDOMNode(this.refs.title).value,
 			description: findDOMNode(this.refs.description).value,
+			images: findDOMNode(this.refs.image).value,
 			price: findDOMNode(this.refs.price).value
 		}]
 		this.props.postBooks(book);
+	}
+
+	handleSelect(img){
+		this.setState({
+			img: "/images/" + img
+		})
 	}
 
 	onDelete(){
@@ -31,9 +56,32 @@ class BooksForm extends React.Component{
 			)
 		});
 
+		const imgList = this.state.images.map(function(imgArr, i){
+			return(
+				<MenuItem onClick={this.handleSelect.bind(this, imgArr.name)} key={i} eventKey={imgArr.name}> {imgArr.name} </MenuItem>
+			)
+		}, this)
+
 		return(
 			<Well>
-				<Panel>
+			<Row>
+				<Col xs={12} sm={6}>
+					<Panel>
+						<InputGroup>
+					        <FormControl type="text" ref="image" value={this.state.img} />
+					        <DropdownButton
+					          componentClass={InputGroup.Button}
+					          id="input-dropdown-addon"
+					          title="Select an image"
+					          bsStyle="primary">
+					          {imgList}
+					        </DropdownButton>
+					      </InputGroup>
+					      <Image src={this.state.img} responsive/>
+					 </Panel>
+				</Col>
+				<Col xs={12} sm={6}>
+					<Panel>
 					<FormGroup controlId="title">
 						<ControlLabel> Title </ControlLabel>
 						<FormControl 
@@ -67,7 +115,9 @@ class BooksForm extends React.Component{
 				    </FormGroup>
 				    <Button onClick={this.onDelete.bind(this)} bsStyle="danger"> Delete </Button>
 				</Panel>
-			</Well>
+				</Col>
+			</Row>
+		</Well>
 		)
 	}
 }
@@ -79,7 +129,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({postBooks, deleteBooks}, dispatch); 
+	return bindActionCreators({postBooks, deleteBooks, getBooks}, dispatch); 
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(BooksForm); 

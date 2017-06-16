@@ -19,11 +19,12 @@ class BooksList extends React.Component{
 	render(){		
 		const bookList = this.props.books.map((booksArr) => {
 			return(
-				<Col xs={12} sm={6} md={4} key={booksArr._id}>
+				<Col xs={6} md={6} key={booksArr._id}>
 					<BookItem 
 						_id = {booksArr._id}
 						title = {booksArr.title}
 						description = {booksArr.description}
+						images = {booksArr.images}
 						price = {booksArr.price}
 					/>
 				</Col>
@@ -36,9 +37,6 @@ class BooksList extends React.Component{
 				<Cart />
 			</Row>
 				<Row style={{marginTop: "15px"}}>
-					<Col xs={12} sm={6}>
-						<BooksForm />
-					</Col>
 					{bookList}
 				</Row>
 			</Grid>

@@ -120,6 +120,28 @@ app.put("/books/:_id", function(req,res){
     });
 });
 
+
+// get books images 
+
+app.get("/images", function(req,res){
+  const imgFolder = __dirname + "/public/images/";
+  const fs = require("fs"); 
+
+  fs.readdir(imgFolder, function(err,files){
+    if(err){
+      return console.log(err)
+    }else{
+      const filesArr = []; 
+      files.forEach(function(file){
+        filesArr.push({name: file}); 
+      });
+      res.json(filesArr);
+    }
+  });
+});
+
+
+
 app.listen(3001, function(err){
   if(err){
     return console.log(err); 
