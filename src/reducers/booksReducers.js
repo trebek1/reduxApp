@@ -10,18 +10,19 @@ export function booksReducers(state = {
 		case "INCREMENT": 
 		return state + action.payload; 
 		break;
-
 		case "DECREMENT": 
 		return state - action.payload; 
 		break;
-
 		case "POST_BOOK":
-		// let books = state.books.concat(action.payload); 		// return {books}; 
-
 		let books = [...state.books, ...action.payload]
-		return Object.assign({}, state, {books});
+		return {...state, books: [...state.books, ...action.payload], msg: "Saved! Click to continue", style: "success"}
 		break; 
-
+		case "POST_BOOK_REJECTED":
+		return {...state, msg: "Please, try again", style: "danger"}
+		break; 
+		case "RESET_BUTTON":
+		return {...state, msg: null, style: "primary"}
+		break;
 		case "DELETE_BOOK":
 		// create a copy of the current array 
 		const currentBookToDelete = [...state.books]; 
