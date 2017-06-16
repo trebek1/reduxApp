@@ -40,7 +40,7 @@ app.post("/cart", function(req,res){
   req.session.cart = cart; 
   req.session.save(function(err){
     if(err){
-      throw err; 
+      console.log("error saving to cart ", err); 
     }
     res.json(req.session.cart); 
   }); 
@@ -71,7 +71,7 @@ app.post("/books", function(req,res){
 
   Books.create(book, function(err, books){
     if(err){
-      throw err; 
+      console.log("error posting to books ", err); 
     }
     res.json(books); 
   });
@@ -80,7 +80,7 @@ app.post("/books", function(req,res){
 app.get("/books", function(req,res){
   Books.find(function(err, books){
     if(err){
-      throw err; 
+      console.log("error getting books ", err); 
     }
     res.json(books); 
   });
@@ -91,7 +91,7 @@ app.delete("/books/:_id", function(req,res){
 
   Books.remove(query, function(err, books){
     if(err){
-      throw err; 
+      console.log("error deleting book ", err); 
     }
     res.json(books);  
   });
@@ -114,7 +114,7 @@ app.put("/books/:_id", function(req,res){
 
     Books.findOneAndUpdate(query, update, options, function(err , books){
       if(err){
-        throw err; 
+        console.log("error finding book ", err); 
       }
       res.json(books); 
     });
