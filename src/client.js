@@ -7,7 +7,7 @@ import {addToCart} from "./actions/cartActions";
 import {postBooks, deleteBooks, updateBooks} from "./actions/booksActions"; 
 
 import React from "react"; 
-import {render} from "react-dom"; 
+import {render} from "react-dom";
 import {Provider} from "react-redux";
 
 import thunk from "redux-thunk";
@@ -44,33 +44,4 @@ const Routes = (
 render(
 	Routes, document.getElementById("app")
 );	
-
-
-// store.subscribe(() => {
-// 	console.log("current state is ", store.getState());
-// }); 
-	
-// step 2 create and dispatch actions 
-
-//store.dispatch(postBooks());
-
-// store.dispatch(postBooks([{
-// 		id: 3, 
-// 		title: "title 3", 
-// 		description: "desc 3", 
-// 		price: 777
-// 	}]));
-// crud operations in redux 
-
-//store.dispatch(deleteBooks({id: 1}));
-
-// store.dispatch(updateBooks({
-// 		id: 2, 
-// 		title: "learn redux", 
-// 		description: "desc"
-// 	}));
-
-//store.dispatch(addToCart([{id:1}]));
-
-
 

@@ -54,13 +54,7 @@ app.get("/cart", function(req,res){
   }
 })
 
-
-
 // end of sessions 
-
-
-
-
 
 var Books = require("./models/books.js"); 
 
@@ -120,7 +114,6 @@ app.put("/books/:_id", function(req,res){
     });
 });
 
-
 // get books images 
 
 app.get("/images", function(req,res){
@@ -139,8 +132,6 @@ app.get("/images", function(req,res){
     }
   });
 });
-
-
 
 app.listen(3001, function(err){
   if(err){
